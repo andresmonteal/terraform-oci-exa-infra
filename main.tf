@@ -1,4 +1,8 @@
 locals {
+  ADs = [
+    // Iterate through data.oci_identity_availability_domains.ad and create a list containing AD names
+    for i in data.oci_identity_availability_domains.ad.availability_domains : i.name
+  ]
   default_freeform_tags = {
     terraformed = "Please do not edit manually"
     module      = "oracle-terraform-oci-exa-infra"
@@ -9,7 +13,7 @@ locals {
 # This resource provides the Cloud Exadata Infrastructure resource in Oracle Cloud Infrastructure Database service.
 resource "oci_database_cloud_exadata_infrastructure" "main" {
     #Required
-    availability_domain   = var.ad_number
+    availability_domain   = var.ad_number == null ? element(local.ADs, 1) : element(local.ADs, var.ad_number - 1)
     compartment_id        = var.compartment_id
     display_name          = var.infrastructure_display_name
     shape                 = var.shape

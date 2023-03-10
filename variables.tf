@@ -1,3 +1,8 @@
+variable "tenancy_ocid" {
+  description = "(Updatable) The OCID of the root compartment"
+  type        = string
+}
+
 variable "compartment_id" {
   description = "(Required) (Updatable) The OCID of the compartment."
 }
