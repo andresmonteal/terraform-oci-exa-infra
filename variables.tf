@@ -37,11 +37,11 @@ variable "storage_count" {
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
   type        = map(any)
-  default = {}
+  default     = {}
 }
 
 variable "defined_tags" {
   description = "simple key-value pairs to tag the created resources using defined OCI tags."
   type        = map(any)
-  default = {}
+  default     = {}
 }
